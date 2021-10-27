@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    Vector3 temp;
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Rock"){
             Destroy(other.gameObject);
         }
         if(other.tag == "Power"){
+            temp = transform.localScale;
+            temp.x *= 2f;
+            transform.localScale=temp;
             Destroy(other.gameObject);
         }
         
@@ -32,6 +36,7 @@ public class PlayerController : MonoBehaviour
         if(x>0){
             MoveRight();
         }
+
 
         Vector3 pos = transform.position;
         pos.x = Mathf.Clamp(pos.x,-maxX,maxX);
